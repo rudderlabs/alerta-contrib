@@ -7,10 +7,9 @@ mock
 mypy
 pre-commit
 PyJWT>=2.0.0
-pylint
 pytest>=5.4.3
 pytest-cov
 python-dotenv
 requests_mock
 twine
-wheel
+wheel==0.38.0
