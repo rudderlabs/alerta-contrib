@@ -33,9 +33,14 @@ jobs:
         python-version: [3.7, 3.8]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2.3.4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -62,7 +67,7 @@ jobs:
         run: |
           pytest -v webhooks/*/test*.py --cov=webhooks
 
-      - uses: act10ns/slack@v1
+      - uses: act10ns/slack@87c73aef9f8838eb6feae81589a6b1487a4a9e08 # v1.6.0
         with:
           status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
@@ -82,9 +87,14 @@ jobs:
         python-version: [3.6, 3.7]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2.3.4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -111,7 +121,7 @@ jobs:
         run: |
           pytest -v webhooks/*/test*.py --cov=webhooks
 
-      - uses: act10ns/slack@v1
+      - uses: act10ns/slack@87c73aef9f8838eb6feae81589a6b1487a4a9e08 # v1.6.0
         with:
           status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
@@ -139,7 +149,12 @@ jobs:
           SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: http://localhost:8080/auth/saml
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - name: Install packages
         run: |
           sudo apt-get update
@@ -150,7 +165,7 @@ jobs:
             libsasl2-dev \
             xmlsec1
       - name: Set up Python 3.x
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2.3.4
         with:
           python-version: '3.x'
           architecture: 'x64'
@@ -167,7 +182,7 @@ jobs:
         run: |
           pylint -v integrations/*/*.py
 
-      - uses: act10ns/slack@v1
+      - uses: act10ns/slack@87c73aef9f8838eb6feae81589a6b1487a4a9e08 # v1.6.0
         with:
           status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
