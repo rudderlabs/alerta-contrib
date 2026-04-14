@@ -15,7 +15,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres
+        image: postgres@sha256:52e6ffd11fddd081ae63880b635b2a61c14008c17fc98cdc7ce5472265516dd0 # latest
         env:
           POSTGRES_DB: alerta
           POSTGRES_USER: postgres
@@ -78,7 +78,7 @@ jobs:
 
     services:
       mongodb:
-        image: mongo
+        image: mongo@sha256:f071cbf97a6e52fb7f07ce9ca5d862ad79876bf0eba9ba97758337d740449638 # latest
         ports:
           - 27017:27017
 
@@ -132,15 +132,15 @@ jobs:
 
     services:
       mongodb:
-        image: mongo
+        image: mongo@sha256:f071cbf97a6e52fb7f07ce9ca5d862ad79876bf0eba9ba97758337d740449638 # latest
         ports:
           - 27017:27017
       ldap:
-        image: rroemhild/test-openldap
+        image: rroemhild/test-openldap@sha256:ee9b80948b97a66f1577b847777a27bb9ec79a84d952907ec5d3d1444fc397cc # latest
         ports:
           - 389:389
       saml-idp:
-        image: jamedjo/test-saml-idp
+        image: jamedjo/test-saml-idp@sha256:8588f8146aee29044abc6097414221134b0385043d9a3863694842e155770531 # latest
         ports:
           - 9443:8443
           - 9080:8080
